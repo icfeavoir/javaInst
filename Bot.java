@@ -27,7 +27,7 @@ public class Bot extends Thread {
 				dir += dirList[i]+"/";
 			}
 			dir += "resource/php/";
-			rep = exec("php "+dir+fileName+".php "+this.instaface_id);
+			rep = exec(new String[] {"php", dir+fileName+".php", this.instaface_id+""});
 		} catch (Exception e) {
 			e.printStackTrace();
 			rep = "error";
@@ -37,11 +37,11 @@ public class Bot extends Thread {
 	
 	public String stopBot() {
 		System.out.println("Stopped...");
-		this.exec("pkill -9 ssh");
-		return this.exec("pkill -9 php");
+		this.exec(new String[] {"pkill", "-9", "ssh"});
+		return this.exec(new String[] {"pkill", "-9", "php"});
 	}
 	
-	public String exec(String command) {
+	public String exec(String[] command) {
 		StringBuffer output = new StringBuffer();
 		Process p;
 		String line;
